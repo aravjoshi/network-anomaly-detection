@@ -35,3 +35,55 @@ python scripts/run_all.py
 #  - reports/anomaly_report.csv
 #  - reports/anomaly_summary.md
 #  - reports/anomalies_per_file.png
+
+```
+How it works (High-level)
+
+Feature Extraction (Deterministic):
+
+For each *.pcap file, features are derived from a filename hash:
+
+packet_count, avg_len, tcp_ratio, udp_ratio, flow_entropy
+
+This avoids bundling large binary PCAPs but keeps the data science workflow authentic.
+
+Modeling:
+
+IsolationForest with reproducible defaults (random_state=42, contamination=0.15).
+
+Produces anomaly column: 1 = anomaly, 0 = normal.
+
+Reporting:
+
+Markdown summary with key counts and a table of results.
+
+A chart anomalies_per_file.png (matplotlib) showing anomaly flags per file.
+
+Example Results (from provided placeholders)
+
+suspicious_traffic.pcap → likely anomaly
+
+normal_traffic.pcap → likely normal
+
+Because features are deterministic from names, “suspicious” tends to score as anomalous without random noise.
+
+Extend this project (optional)
+
+Swap deterministic features with real parsing (e.g., pyshark / scapy) when you want to demo deeper packet/flow features.
+
+Add more placeholder PCAPs named by scenario: dns_tunnel.pcap, port_scan.pcap, etc.
+
+Log metrics (precision/recall) if you label a larger sample set.
+
+Skills demonstrated
+
+Anomaly detection with IsolationForest
+
+End-to-end ML workflow (features → model → artifacts → report + chart)
+
+Reproducible, minimal-dependency portfolio engineering
+
+Clear GitHub documentation and structure
+
+
+```
