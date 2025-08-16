@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+.env
+
+# Reports (keep artifacts versioned if you prefer—comment out to ignore)
+# reports/*.csv
+# reports/*.md
+# reports/*.png
+
+# OS
+.DS_Store
+Thumbs.db
